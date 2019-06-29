@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 app.use('/', routes);
 
-db.connectDB().then(() => {
+db.connectDb().then(() => {
   const listener = app.listen( port, () => {
     console.info(`Server is listening on port ${port}.`);
   });
