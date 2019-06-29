@@ -57,8 +57,20 @@ updateUserById = (req, res, next) => {
 });
 }
 
+removeUserById = (req, res, next) => {
+  req.models.Users.findByIdAndDelete({ _id: req.params.id}).then((user) => {
+    if (user) {
+      return res.status(200).send(`${user.name} has been removed.`);
+    }
+    res.sendStatus(204);
+  }).catch((error) => {
+    next(error);
+  })
+}
+
 module.exports = {
   getUsersList,
   signUpUser,
-  updateUserById
+  updateUserById,
+  removeUserById
 };
