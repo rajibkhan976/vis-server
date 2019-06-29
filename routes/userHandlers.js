@@ -28,6 +28,22 @@ signUpUser = (req, res, next) => {
 });
 }
 
+signInUser = (req, res, next) => {
+  req.models.Users.findOne({ email: req.body.email }).then((user) => {
+    if (user) {
+      bcrypt.compare(req.body.password, user.password, (err, result) => {
+        if (result == true) {
+          res.send(`${user.name} successfully logged in:)`);
+        } else {
+          res.send(`You entered wrong password?`);
+        }
+      });
+    } else {
+      return res.send(`${req.body.email} not exists!`);
+    }
+  })
+}
+
 updateUserById = (req, res, next) => {
   bcrypt.genSalt(saltRounds, function(err, salt) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
@@ -71,6 +87,7 @@ removeUserById = (req, res, next) => {
 module.exports = {
   getUsersList,
   signUpUser,
+  signInUser,
   updateUserById,
   removeUserById
 };
