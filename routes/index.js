@@ -8,6 +8,7 @@ router.get("/users", userHandlers.getUsersList);
 router.post("/users", userHandlers.signUpUser);
 router.patch("/user/:id", userHandlers.updateUserById);
 router.delete("/user/:id", userHandlers.removeUserById);
-router.post("/user", userHandlers.signInUser);
+router.post("/signin", userHandlers.signInUser);
+router.get("/signout", userHandlers.signOutUser);
 
 module.exports = router;

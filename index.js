@@ -8,9 +8,17 @@ const app = express();
 
 const port = process.env.PORT || 4000;
 
+const session = require("express-session");
+
 const cors = require("cors");
 
 app.use(cors());
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: false
+}));
 
 app.use(express.json());
 

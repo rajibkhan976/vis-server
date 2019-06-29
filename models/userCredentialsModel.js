@@ -5,11 +5,13 @@ const userCredentialsSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
+    trim: true
   },
   email: {
     type: String,
     unique: true,
     required: true,
+    trim: true,
     validator: (v) => {
       return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     }

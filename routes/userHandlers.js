@@ -44,6 +44,18 @@ signInUser = (req, res, next) => {
   })
 }
 
+signOutUser = (req, res, next) => {
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) {
+        return next(err);
+      } else {
+        return res.send(`Logout successful:)`);
+      }
+    });
+  }
+}
+
 updateUserById = (req, res, next) => {
   bcrypt.genSalt(saltRounds, function(err, salt) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
@@ -88,6 +100,7 @@ module.exports = {
   getUsersList,
   signUpUser,
   signInUser,
+  signOutUser,
   updateUserById,
   removeUserById
 };
