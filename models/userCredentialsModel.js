@@ -19,6 +19,7 @@ const userCredentialsSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    trim: true,
     minlength: 8
   },
   job_title: {
