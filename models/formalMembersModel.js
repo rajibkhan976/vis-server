@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const formalMembersSchema = new mongoose.Schema({
   ESNcard_no: {
@@ -39,7 +39,7 @@ const formalMembersSchema = new mongoose.Schema({
     trim: true,
     index: true,
     validator: (v) => {
-      return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
     }
   },
   phone_no: {
@@ -65,9 +65,8 @@ const formalMembersSchema = new mongoose.Schema({
     trim: true,
     index: true
   }
-}
-);
+})
 
-const formalMembers = mongoose.model('formalMembers', formalMembersSchema);
+const formalMembers = mongoose.model('formalMembers', formalMembersSchema)
 
-module.exports = formalMembers;
+module.exports = formalMembers

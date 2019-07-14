@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const userCredentialsSchema = new mongoose.Schema({
   name: {
@@ -13,7 +13,7 @@ const userCredentialsSchema = new mongoose.Schema({
     required: true,
     trim: true,
     validator: (v) => {
-      return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
     }
   },
   password: {
@@ -29,9 +29,14 @@ const userCredentialsSchema = new mongoose.Schema({
   priority: {
     type: Number,
     required: true
+  },
+  status: {
+    type: Boolean,
+    default: true,
+    required: true
   }
-});
+})
 
-const Users = mongoose.model('Users', userCredentialsSchema);
+const Users = mongoose.model('Users', userCredentialsSchema)
 
-module.exports = Users;
+module.exports = Users

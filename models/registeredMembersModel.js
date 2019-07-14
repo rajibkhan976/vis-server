@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const registeredMembersSchema = new mongoose.Schema({
   term: {
@@ -27,7 +27,7 @@ const registeredMembersSchema = new mongoose.Schema({
     required: true,
     trim: true,
     validator: (v) => {
-      return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
     }
   },
   phone_no: {
@@ -49,8 +49,8 @@ const registeredMembersSchema = new mongoose.Schema({
     required: true,
     trim: true
   }
-});
+})
 
-const registeredMembers = mongoose.model('registeredMembers', registeredMembersSchema);
+const registeredMembers = mongoose.model('registeredMembers', registeredMembersSchema)
 
-module.exports = registeredMembers;
+module.exports = registeredMembers

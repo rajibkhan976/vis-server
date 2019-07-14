@@ -1,14 +1,9 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const temporaryMembersSchema = new mongoose.Schema({
   t_no: {
     type: String,
     unique: true,
-    required: true,
-    trim: true
-  },
-  term: {
-    type: String,
     required: true,
     trim: true
   },
@@ -33,7 +28,7 @@ const temporaryMembersSchema = new mongoose.Schema({
     required: true,
     trim: true,
     validator: (v) => {
-      return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
     }
   },
   phone_no: {
@@ -55,8 +50,8 @@ const temporaryMembersSchema = new mongoose.Schema({
     required: true,
     trim: true
   }
-});
+})
 
-const temporaryMembers = mongoose.model('temporaryMembers', temporaryMembersSchema);
+const temporaryMembers = mongoose.model('temporaryMembers', temporaryMembersSchema)
 
-module.exports = temporaryMembers;
+module.exports = temporaryMembers

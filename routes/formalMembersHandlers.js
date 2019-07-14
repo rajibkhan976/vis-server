@@ -1,8 +1,8 @@
 getFormalMembers = (req, res, next) => {
   req.models.formalMembers.find().then((members) => {
-    return res.send(members);
+    return res.send(members)
   }).catch((error) => {
-    next(error);
+    next(error)
   })
 }
 
@@ -19,14 +19,16 @@ approveMembers = (req, res, next) => {
     nationality: req.body.nationality,
     dietary_preference: req.body.dietary_preference
   }).then((member) => {
-    return res.status(201).send(member);
+    return res.status(201).send(member)
   }).catch((error) => {
-    next(error);
+    next(error)
   })
 }
 
 updateMemberById = (req, res, next) => {
-  req.models.formalMembers.updateOne({ _id: req.params.id }, {
+  req.models.formalMembers.updateOne({
+    _id: req.params.id
+  }, {
     ESNcard_no: req.body.ESNcard_no,
     term: req.body.term,
     first_name: req.body.first_name,
@@ -43,15 +45,15 @@ updateMemberById = (req, res, next) => {
     runvalidators: true
   }).then((status) => {
     if (status.upserted) {
-      res.status(201);
+      res.status(201)
     } else if (status.nModified) {
-      res.status(200);
+      res.status(200)
     } else {
-      res.status(204);
+      res.status(204)
     }
-    res.send();
+    res.send()
   }).catch((error) => {
-    next(error);
+    next(error)
   })
 }
 
@@ -59,4 +61,4 @@ module.exports = {
   getFormalMembers,
   approveMembers,
   updateMemberById
-};
+}
