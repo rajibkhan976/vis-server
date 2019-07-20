@@ -19,7 +19,7 @@ signUpUser = (req, res, next) => {
         password: hash,
         job_title: req.body.job_title,
         priority: req.body.priority,
-        status: true
+        status: req.body.status
       }).then((user) => {
         return res.status(201).send(user)
       }).catch((error) => {
@@ -93,9 +93,46 @@ updateUserById = (req, res, next) => {
         res.send()
       }).catch((error) => {
         next(error)
+  }).then((status) => {
+    if (status.upserted) {
+      res.status(201)
+    } else if (status.nModified) {
+      res.status(200)
+    } else {
+      res.status(204)
+    }
+    res.send()
+  }).catch((error) => {
+    next(error)
+  })
+
+  // if req has password element, the password will be encrypted and changed
+  if (req.body.password) {
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+      bcrypt.hash(req.body.password, salt, function (err, hash) {
+        req.models.Users.updateOne({
+          _id: req.params.id
+        }, {
+          password: hash
+        }, {
+          new: true,
+          upsert: true,
+          runvalidators: true
+        }).then((status) => {
+          if (status.upserted) {
+            res.status(201)
+          } else if (status.nModified) {
+            res.status(200)
+          } else {
+            res.status(204)
+          }
+          res.send()
+        }).catch((error) => {
+          next(error)
+        })
       })
     })
-  })
+  }
 }
 
 removeUserById = (req, res, next) => {

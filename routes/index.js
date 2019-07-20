@@ -16,7 +16,7 @@ const formalMembers = require('.././models/formalMembersModel.js')
 
 // routes and methods for managing system users
 router.get('/users', userHandlers.getUsersList)
-router.post('/users', userHandlers.signUpUser)
+router.post('/signup', userHandlers.signUpUser)
 router.patch('/user/:id', userHandlers.updateUserById)
 router.delete('/user/:id', userHandlers.removeUserById)
 router.post('/signin', userHandlers.signInUser)
